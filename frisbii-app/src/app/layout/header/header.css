@@ -1,0 +1,29 @@
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid $color-border-primary;
+  height: 133px;
+}
+
+.menu {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-left-side {
+  display: flex;
+  gap: 70px;
+
+}
+
+.logo {
+  max-height: 37px;
+  width: auto;
+
+}

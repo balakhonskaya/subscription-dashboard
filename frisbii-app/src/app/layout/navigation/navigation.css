@@ -1,0 +1,6 @@
+@use '../../styles/index' as *;
+
+.nav-links button {
+  font-weight: $font-weight-light;
+  font-size: $font-size-sm;
+}

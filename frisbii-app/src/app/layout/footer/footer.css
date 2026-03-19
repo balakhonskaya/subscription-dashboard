@@ -1,0 +1,16 @@
+.app-footer {
+  border-top: 1px solid lightgrey;
+  color: #666666;
+  padding: 16px 24px;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+}
+
+.footer-content span {
+  color: #666666;
+  font-weight: lighter;
+  font-size: 12px;
+}
