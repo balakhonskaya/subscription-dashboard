@@ -6,7 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   selector: 'app-header',
   imports: [Navigation, MatToolbarModule],
   templateUrl: './header.html',
-  styleUrl: './header.css',
+  styleUrl: './header.scss',
 })
 export class Header {
 

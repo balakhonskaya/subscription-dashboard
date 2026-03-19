@@ -28,6 +28,9 @@
               "src/material-theme.scss",
               "src/styles.css"
             ],
+            "stylePreprocessorOptions": {
+                "includePaths": ["src"]
+              },
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
