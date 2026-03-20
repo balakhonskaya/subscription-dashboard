@@ -1,0 +1,9 @@
+<div class="page-container">
+  <h3 class="page-title">{{title}}</h3>
+  <div class="cards-container">
+    <div
+      *ngFor="let customer of customerList().content"
+      > {{customer.lastName}}
+  </div>
+  </div>
+</div>
