@@ -8,7 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
   selector: 'app-main-layout',
   imports: [RouterOutlet, Header, Footer, MatSidenavModule],
   templateUrl: './main-layout.html',
-  styleUrl: './main-layout.css',
+  styleUrl: './main-layout.scss',
 })
 export class MainLayout {
 
