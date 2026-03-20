@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CustomerListModel } from '../models/customer.model';
+import { HttpClient } from '@angular/common/http';
+import { Customer } from '../models/customer.model';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 
 @Injectable({
@@ -12,14 +12,10 @@ export class CustomerService {
 
   env = environment;
 
-  async loadAllCustomers():Promise<CustomerListModel> {
-    const headers = new HttpHeaders({
-      Authorization: 'Basic ' + btoa('priv_xxx:priv_e441cc05efb2ecc32bff2b9336c6b54d')
-    });
-
+  async loadAllCustomers():Promise<Customer> {
     const response = await firstValueFrom(
-      this.http.get<{ results: CustomerListModel }>(
-        `${this.env.apiRoot}/list/customer`, { headers }
+      this.http.get<{ results: Customer }>(
+        `${this.env.apiRoot}/v1/customer/{'customer001'}`,
       )
     );
     return response.results;

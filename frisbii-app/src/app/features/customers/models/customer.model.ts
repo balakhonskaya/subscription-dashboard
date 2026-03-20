@@ -1,7 +1,6 @@
 export interface CustomerListModel {
   content: Customer[];
-  hasMore?: boolean;
-  total?: number;
+  size?: number;
 }
 
 export interface Customer {

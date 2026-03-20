@@ -1,28 +1,31 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
-import { CustomerListModel } from '../../models/customer.model';
+import { Customer, CustomerListModel } from '../../models/customer.model';
 import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-customer-list',
-  imports: [NgFor],
+  imports: [],
   templateUrl: './customer-list.html',
   styleUrl: './customer-list.scss',
 })
 export class CustomerList {
-  customerList = signal<CustomerListModel>({ content: [] });
+  customer = signal<Customer>({} as Customer);
   customerService = inject(CustomerService);
-  title = 'Customer List';
+  title = 'Customer';
 
 
   constructor() {
     this.loadCustomerList();
+    effect(() => {
+      console.log('Customer:', this.customer());
+    });
   }
 
   async loadCustomerList() {
     try {
-      const customers = await this.customerService.loadAllCustomers();
-      this.customerList.set(customers);
+      const customer = await this.customerService.loadAllCustomers();
+      this.customer.set(customer);
     }
     catch(err) {
       console.error(err);
