@@ -1,7 +1,6 @@
 import { Component, effect, inject, signal } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
 import { CustomerListModel } from '../../models/customer.model';
-import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-customer-list',
@@ -18,7 +17,7 @@ export class CustomerList {
   constructor() {
     this.loadCustomerList();
     effect(() => {
-      console.log('Customer List:', this.customerList());
+      console.log('Customer List:', this.customerList().content);
     });
   }
 

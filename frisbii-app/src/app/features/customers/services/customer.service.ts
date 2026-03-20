@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Customer, CustomerListModel } from '../models/customer.model';
+import { CustomerListModel } from '../models/customer.model';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 
 @Injectable({
@@ -13,11 +13,13 @@ export class CustomerService {
   env = environment;
 
   async loadAllCustomers():Promise<CustomerListModel> {
+
+
     const response = await firstValueFrom(
-      this.http.get<{ results: CustomerListModel }>(
-        `${this.env.apiRoot}/v1/list/customer`,
+      this.http.get<CustomerListModel>(
+        `${this.env.apiRoot}/v1/list/customer`
       )
     );
-    return response.results;
+    return response;
   }
 }
