@@ -6,8 +6,8 @@ export interface CustomerListModel {
 export interface Customer {
   handle: string;
   email?: string;
-  firstName?: string;
-  lastName?: string;
+  first_name?: string;
+  last_name?: string;
   company?: string;
   created?: string; 
 }
