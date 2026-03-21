@@ -5,10 +5,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-customer-list',
-  imports: [MatCardModule, MatButtonModule, MatIconModule, MatTableModule],
+  imports: [MatCardModule, MatButtonModule, MatIconModule, MatTableModule, DatePipe],
   templateUrl: './customer-list.html',
   styleUrl: './customer-list.scss',
 })
@@ -21,8 +23,8 @@ export class CustomerList {
     'handle',
     'name',
     'email',
-    'created',
-    'subscriptions'
+    'company',
+    'created'
   ];
 
 
