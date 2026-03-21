@@ -1,8 +1,86 @@
-<div class="page-container">
-  <h3 class="page-title">{{title}}</h3>
-  <div class="cards-container">
-    @for (customer of customerList().content; track customer.last_name) {
-        <div>{{ customer.last_name }}</div>
-        }
+
+<div class="customers-page">
+  <div class="page-header">
+    <h1 class="page-title">Customers</h1>
+
+    <button mat-stroked-button class="new-btn">
+      <mat-icon>add_circle_outline</mat-icon>
+      New
+    </button>
   </div>
+
+  <mat-card class="customers-card">
+    <div class="card-header">
+      <h2 class="card-title">Customers</h2>
+
+      <div class="card-actions">
+        <button mat-icon-button aria-label="Filter">
+          <mat-icon>filter_alt</mat-icon>
+        </button>
+
+        <button mat-icon-button aria-label="Columns">
+          <mat-icon>view_week</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="filters-row">
+      <button mat-flat-button class="filter-btn active">
+        <mat-icon>calendar_today</mat-icon>
+        Show all
+      </button>
+
+      <button mat-stroked-button class="filter-btn">Handle</button>
+      <button mat-stroked-button class="filter-btn">Name</button>
+      <button mat-stroked-button class="filter-btn">Email</button>
+    </div>
+
+    <div class="table-wrapper">
+      <table
+        mat-table
+        [dataSource]="customerList().content"
+        class="customers-table"
+      >
+        <!-- Handle -->
+        <ng-container matColumnDef="handle">
+          <th mat-header-cell *matHeaderCellDef>
+            <div class="th-with-icon">
+              Handle
+              <mat-icon class="info-icon">info</mat-icon>
+            </div>
+          </th>
+          <td mat-cell *matCellDef="let customer">
+            <span class="handle-chip">{{ customer.handle }}</span>
+          </td>
+        </ng-container>
+
+        <!-- Name -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let customer">{{ customer.last_name }}</td>
+        </ng-container>
+
+        <!-- Email -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let customer">{{ customer.email }}</td>
+        </ng-container>
+
+        <!-- Created -->
+        <ng-container matColumnDef="created">
+          <th mat-header-cell *matHeaderCellDef>Created</th>
+          <td mat-cell *matCellDef="let customer">{{ customer.created }}</td>
+        </ng-container>
+
+        <!-- Active subscriptions -->
+        <ng-container matColumnDef="subscriptions">
+          <th mat-header-cell *matHeaderCellDef>Active subscriptions</th>
+          <td mat-cell *matCellDef="let customer">{{ customer.subscriptions }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </mat-card>
 </div>
