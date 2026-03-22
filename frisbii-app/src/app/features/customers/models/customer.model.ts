@@ -9,5 +9,10 @@ export interface Customer {
   first_name?: string;
   last_name?: string;
   company?: string;
-  created?: string; 
+  created?: string;
+  postal_code?: string;
+  city?: string;
+  country?: string;
+  address?: string;
+  address2?: string;
 }

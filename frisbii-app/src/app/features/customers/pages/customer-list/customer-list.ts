@@ -33,7 +33,6 @@ export class CustomerList implements OnInit {
     async ngOnInit() {
     try {
       const response = await this.customerService.loadAllCustomers();
-      console.log('Customer List:', response);
 
       if (response?.content?.length) {
         this.customerList.set(response);
