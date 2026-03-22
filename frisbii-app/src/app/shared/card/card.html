@@ -36,7 +36,7 @@
         <div class="detail-item">
           <div class="detail-label">Country</div>
           <div class="detail-value detail-value--country">
-            <span>{{ item().card_country }}</span>
+            <span>{{ item().card_country || ''}}</span>
           </div>
         </div>
 
@@ -47,9 +47,9 @@
 
         <div class="detail-item detail-item--wide">
           <div class="detail-label">Address</div>
-          <div class="detail-value detail-value--multiline">
-            {{ item().card_address_line1 }}<br />
-            {{ item().card_address_line2 }}
+          <div class="detail-value detail-value--multiline">{{ item().card_postal_code || '' }}
+            {{ item().card_address_line1 || '' }}<br />
+            {{ item().card_address_line2  || ''}}
           </div>
         </div>
       </div>
