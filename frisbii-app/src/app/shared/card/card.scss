@@ -1,0 +1,145 @@
+:host {
+  display: block;
+}
+
+.customer-detail-page {
+  min-height: 100vh;
+  padding: 24px;
+  background: #f5f7fb;
+  box-sizing: border-box;
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #111827;
+}
+
+.detail-card {
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  box-shadow: none !important;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.detail-card__header {
+  padding: 28px 32px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.customer-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.customer-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #111827;
+}
+
+.copy-btn {
+  width: 36px;
+  height: 36px;
+  color: #111827;
+
+  .mat-icon {
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.detail-card__content {
+  padding: 30px 26px 28px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  column-gap: 56px;
+  row-gap: 34px;
+  align-items: start;
+}
+
+.detail-item {
+  min-width: 0;
+}
+
+.detail-item--wide {
+  grid-column: span 1;
+}
+
+.detail-label {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #667196;
+}
+
+.detail-value {
+  font-size: 1.1rem;
+  line-height: 1.45;
+  font-weight: 500;
+  color: #111827;
+  word-break: break-word;
+}
+
+.detail-value--multiline {
+  line-height: 1.5;
+}
+
+.detail-value--country {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.flag {
+  font-size: 1.65rem;
+  line-height: 1;
+}
+
+@media (max-width: 1100px) {
+  .details-grid {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .customer-detail-page {
+    padding: 16px;
+  }
+
+  .page-title {
+    font-size: 1.6rem;
+  }
+
+  .detail-card__header {
+    padding: 22px 20px;
+  }
+
+  .detail-card__content {
+    padding: 22px 20px;
+  }
+
+  .customer-title {
+    font-size: 1.5rem;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 24px;
+  }
+}

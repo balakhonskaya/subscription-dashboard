@@ -1,0 +1,58 @@
+<div class="customer-detail-page">
+  <div class="page-header">
+    <h1 class="page-title">Customer Details</h1>
+  </div>
+
+  <mat-card class="detail-card">
+    <div class="detail-card__header">
+      <div class="customer-title-row">
+        <h2 class="customer-title">
+          Customer: {{ item().card_handle }}
+        </h2>
+
+        <button
+          mat-icon-button
+          type="button"
+          aria-label="Copy customer handle"
+          class="copy-btn"
+        >
+          <mat-icon>content_copy</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="detail-card__content">
+      <div class="details-grid">
+        <div class="detail-item">
+          <div class="detail-label">First name</div>
+          <div class="detail-value">{{ item().card_full_name }}</div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-label">Email address</div>
+          <div class="detail-value">{{ item().card_email }}</div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-label">Country</div>
+          <div class="detail-value detail-value--country">
+            <span>{{ item().card_country || ''}}</span>
+          </div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-label">Company</div>
+          <div class="detail-value">{{ item().card_company }}</div>
+        </div>
+
+        <div class="detail-item detail-item--wide">
+          <div class="detail-label">Address</div>
+          <div class="detail-value detail-value--multiline">{{ item().card_postal_code || '' }}
+            {{ item().card_address_line1 || '' }}<br />
+            {{ item().card_address_line2  || ''}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

@@ -11,20 +11,6 @@
   box-sizing: border-box;
 }
 
-.page-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-}
-
-.page-title {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #111827;
-}
-
 .new-btn {
   height: 44px;
   padding: 0 18px;
@@ -183,4 +169,12 @@
   .filters-row {
     gap: 12px;
   }
+}
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.clickable-row:hover {
+  background: #f9fafb;
 }
