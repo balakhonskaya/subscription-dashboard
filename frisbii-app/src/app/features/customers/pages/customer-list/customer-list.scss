@@ -184,3 +184,11 @@
     gap: 12px;
   }
 }
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.clickable-row:hover {
+  background: #f9fafb;
+}
