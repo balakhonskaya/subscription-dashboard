@@ -1,0 +1,15 @@
+.customers-card {
+  border-radius: 14px;
+  box-shadow: none !important;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  background: #fff;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 24px;
+  border-bottom: 1px solid #e5e7eb;
+}

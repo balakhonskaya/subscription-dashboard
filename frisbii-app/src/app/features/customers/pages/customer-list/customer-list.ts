@@ -12,10 +12,10 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-
 @Component({
   selector: 'app-customer-list',
-  imports: [MatCardModule,
+  imports: [
+    MatCardModule,
     MatButtonModule,
     MatIconModule,
     MatTableModule,
@@ -23,28 +23,26 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     RouterModule,
     FormsModule,
     MatFormFieldModule,
-    MatInputModule],
+    MatInputModule,
+  ],
   templateUrl: './customer-list.html',
   styleUrl: './customer-list.scss',
 })
 export class CustomerList implements OnInit {
   customerService = inject(CustomerService);
-   messagesService = inject(MessagesService);
+  messagesService = inject(MessagesService);
 
-   customerList = signal<CustomerListModel>({
+  customerList = signal<CustomerListModel>({
     content: [],
   } as CustomerListModel);
-  
+
   title = 'Customer';
+  subtitle1 = 'Invoices';
+  subtitle2 = 'Subscriptions';
+
   searchHandle = signal('');
 
-   displayedColumns: string[] = [
-    'handle',
-    'name',
-    'email',
-    'company',
-    'created'
-  ];
+  displayedColumns: string[] = ['handle', 'name', 'email', 'company', 'created'];
 
   filteredCustomers = computed(() => {
     const term = this.searchHandle().trim().toLowerCase();
@@ -53,22 +51,21 @@ export class CustomerList implements OnInit {
       return this.customerList().content;
     }
 
-    return this.customerList().content.filter(customer =>
-      customer.handle?.toLowerCase().includes(term)
+    return this.customerList().content.filter((customer) =>
+      customer.handle?.toLowerCase().includes(term),
     );
   });
 
- 
-async loadCustomerList() {
-  try {
-    const customerList = await this.customerService.loadAllCustomers();
-    this.customerList.set(customerList);
-  } catch (err) {
-    console.error('loadCustomerList failed', err);
+  async loadCustomerList() {
+    try {
+      const customerList = await this.customerService.loadAllCustomers();
+      this.customerList.set(customerList);
+    } catch (err) {
+      console.error('loadCustomerList failed', err);
+    }
   }
-}
 
-onSearchChange(value: string) {
+  onSearchChange(value: string) {
     this.searchHandle.set(value);
   }
 
@@ -79,5 +76,4 @@ onSearchChange(value: string) {
   ngOnInit(): void {
     this.loadCustomerList();
   }
-
 }
