@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
 import { CustomerListModel } from '../../models/customer.model';
 import { MatCardModule } from '@angular/material/card';
@@ -8,12 +8,22 @@ import { MatTableModule } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MessagesService } from '../../../../shared/messages/messages.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @Component({
   selector: 'app-customer-list',
-  imports: [MatCardModule, MatButtonModule, MatIconModule, MatTableModule, DatePipe, RouterModule],
+  imports: [MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+    DatePipe,
+    RouterModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule],
   templateUrl: './customer-list.html',
   styleUrl: './customer-list.scss',
 })
@@ -26,6 +36,7 @@ export class CustomerList implements OnInit {
   } as CustomerListModel);
   
   title = 'Customer';
+  searchHandle = signal('');
 
    displayedColumns: string[] = [
     'handle',
@@ -34,47 +45,39 @@ export class CustomerList implements OnInit {
     'company',
     'created'
   ];
- 
-  async loadCustomerList(): Promise<void> {
-    try {
-      const customerList = await this.customerService.loadAllCustomers();
-      this.customerList.set(customerList);
-    } catch (err: unknown) {
-      this.messagesService.showMessage(this.getErrorMessage(err), 'success');
-      console.error(err);
+
+  filteredCustomers = computed(() => {
+    const term = this.searchHandle().trim().toLowerCase();
+
+    if (!term) {
+      return this.customerList().content;
     }
+
+    return this.customerList().content.filter(customer =>
+      customer.handle?.toLowerCase().includes(term)
+    );
+  });
+
+ 
+async loadCustomerList() {
+  try {
+    const customerList = await this.customerService.loadAllCustomers();
+    this.customerList.set(customerList);
+  } catch (err) {
+    console.error('loadCustomerList failed', err);
+  }
+}
+
+onSearchChange(value: string) {
+    this.searchHandle.set(value);
+  }
+
+  clearSearch() {
+    this.searchHandle.set('');
   }
 
   ngOnInit(): void {
     this.loadCustomerList();
   }
-
-  private getErrorMessage(err: unknown): string {
-  if (err instanceof HttpErrorResponse) {
-    switch (err.status) {
-      case 0:
-        return 'Network error. Please check your internet connection.';
-      case 400:
-        return '400: Bad request.';
-      case 401:
-        return '401:You are not authorized.';
-      case 403:
-        return '403: Access denied.';
-      case 404:
-        return '404: Customer list not found.';
-      default:
-        if (err.status >= 500) {
-          return '500: Server error. Please try again later.';
-        }
-        return `Request failed: ${err.status}`;
-    }
-  }
-
-  if (err instanceof Error) {
-    return err.message;
-  }
-
-  return 'Unknown error';
-}
 
 }

@@ -1,37 +1,28 @@
 <div class="customers-page">
-
   <mat-card class="customers-card">
     <div class="card-header">
       <h2 class="card-title">Customers</h2>
-
-      <div class="card-actions">
-        <button mat-icon-button aria-label="Filter">
-          <mat-icon>filter_alt</mat-icon>
-        </button>
-
-        <button mat-icon-button aria-label="Columns">
-          <mat-icon>view_week</mat-icon>
-        </button>
+      <div class="search-row">
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Search by handle</mat-label>
+          <input
+            matInput
+            [ngModel]="searchHandle()"
+            (ngModelChange)="onSearchChange($event)"
+            placeholder="Enter customer handle"
+          />
+          @if (searchHandle()) {
+            <button mat-icon-button matSuffix aria-label="Clear search" (click)="clearSearch()">
+              <mat-icon>close</mat-icon>
+            </button>
+          }
+          <mat-icon matPrefix>search</mat-icon>
+        </mat-form-field>
       </div>
     </div>
 
-    <div class="filters-row">
-      <button mat-flat-button class="filter-btn active">
-        <mat-icon>calendar_today</mat-icon>
-        Show all
-      </button>
-
-      <button mat-stroked-button class="filter-btn">Handle</button>
-      <button mat-stroked-button class="filter-btn">Name</button>
-      <button mat-stroked-button class="filter-btn">Email</button>
-    </div>
-
     <div class="table-wrapper">
-      <table
-        mat-table
-        [dataSource]="customerList().content"
-        class="customers-table"
-      >
+      <table mat-table [dataSource]="filteredCustomers()" class="customers-table">
         <!-- Handle -->
         <ng-container matColumnDef="handle">
           <th mat-header-cell *matHeaderCellDef>
@@ -48,7 +39,9 @@
         <!-- Name -->
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let customer">{{ customer.last_name }} {{ customer.first_name }}</td>
+          <td mat-cell *matCellDef="let customer">
+            {{ customer.last_name }} {{ customer.first_name }}
+          </td>
         </ng-container>
 
         <!-- Email -->
@@ -70,8 +63,15 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns" [routerLink]="['/customer', row.handle]"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          [routerLink]="['/customer', row.handle]"
+        ></tr>
       </table>
+      @if (filteredCustomers().length === 0) {
+        <div class="empty-state">No customers found</div>
+      }
     </div>
   </mat-card>
 </div>
