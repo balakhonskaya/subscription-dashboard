@@ -1,0 +1,54 @@
+@use 'styles/index' as *;
+
+.messages-container {
+  display: flex;
+  position: relative;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.message {
+  min-width: 350px;
+  padding: 20px;
+  position: relative;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.message.error {
+  color: white;
+  background-color: $color-danger;
+  border: 1px solid #50277c;
+  opacity: 0.5;
+}
+
+.message.info {
+  color: white;
+  background-color: #2176f7;
+  border: 1px solid #50277c;
+  opacity: 0.5;
+}
+
+
+.message.warning {
+  color: black;
+  background-color: $color-warning;
+  border: 1px solid #50277c;
+  opacity: 0.5;
+}
+
+.message.success {
+  color: black;
+  background-color: $color-success;
+  border: 1px solid #50277c;
+  opacity: 0.5;
+}
+
+
+.close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  max-height: 20px;
+}
