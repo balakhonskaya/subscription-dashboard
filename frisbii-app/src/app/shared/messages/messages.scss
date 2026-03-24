@@ -1,0 +1,40 @@
+@use 'styles/index' as *;
+
+.message {
+  min-width: 250px;
+  padding: 20px 15px 20px 20px;
+  margin: 0 auto;
+  border-radius: 8px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  width: fit-content;
+}
+
+.message.error {
+  color: white;
+  background-color: $color-danger;
+  border: 1px solid #50277c;
+}
+
+.message.info {
+  color: white;
+  background-color: #2176f7;
+  border: 1px solid #50277c;
+  opacity: 0.5;
+}
+
+
+.message.warning {
+  color: black;
+  background-color: $color-warning;
+  border: 1px solid #50277c;
+}
+
+.message.success {
+  color: black;
+  background-color: $color-success;
+  border: 1px solid #50277c;
+}

@@ -1,0 +1,6 @@
+@if(message()) {
+    <div class="message" [ngClass]="message()?.severity">
+      <p>{{message()?.text}}</p>
+      <mat-icon mat-button (click)="onClose()">close</mat-icon>
+    </div>
+}
