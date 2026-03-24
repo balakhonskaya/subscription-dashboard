@@ -153,6 +153,21 @@
   font-size: 0.95rem;
 }
 
+.search-row {
+  margin: 16px 0;
+}
+
+.search-field {
+  width: 320px;
+  max-width: 100%;
+}
+
+.empty-state {
+  padding: 24px;
+  text-align: center;
+  color: #666;
+}
+
 @media (max-width: 900px) {
   .customers-page {
     padding: 16px;
