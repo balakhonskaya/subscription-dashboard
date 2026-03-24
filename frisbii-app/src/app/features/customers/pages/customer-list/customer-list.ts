@@ -55,16 +55,16 @@ export class CustomerList implements OnInit {
       case 0:
         return 'Network error. Please check your internet connection.';
       case 400:
-        return 'Bad request.';
+        return '400: Bad request.';
       case 401:
-        return 'You are not authorized.';
+        return '401:You are not authorized.';
       case 403:
-        return 'Access denied.';
+        return '403: Access denied.';
       case 404:
-        return 'Customer list not found.';
+        return '404: Customer list not found.';
       default:
         if (err.status >= 500) {
-          return 'Server error. Please try again later.';
+          return '500: Server error. Please try again later.';
         }
         return `Request failed: ${err.status}`;
     }
