@@ -12,27 +12,21 @@ export class CustomerService {
 
   env = environment;
 
-  async loadAllCustomers():Promise<CustomerListModel> {
+  async loadAllCustomers(): Promise<CustomerListModel> {
     const response = await firstValueFrom(
-      this.http.get<CustomerListModel>(
-        `${this.env.apiRoot}/v1/list/customer?size=30`
-      )
+      this.http.get<CustomerListModel>(`${this.env.apiRoot}/v1/list/customer?size=30`),
     );
     return response;
   }
 
   async getCustomerByHandle(handle: string): Promise<Customer> {
-  const customer = await firstValueFrom(
-    this.http.get<Customer>(`${this.env.apiRoot}/v1/customer/${handle}`)
-  );
+    const customer = await firstValueFrom(
+      this.http.get<Customer>(`${this.env.apiRoot}/v1/customer/${handle}`),
+    );
 
-  return {
-    ...customer,
-    handle
-  };
+    return {
+      ...customer,
+      handle,
+    };
+  }
 }
-
- 
-}
-  
-

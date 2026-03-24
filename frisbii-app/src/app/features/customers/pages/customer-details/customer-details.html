@@ -1,1 +1,12 @@
 <app-card [item]="customerToCardVM(customer()!)"></app-card>
+<h3>Subscriptions</h3>
+
+@if (subscriptions().length) {
+  <ul>
+    @for (subscription of subscriptions(); track subscription.handle) {
+      <li>{{ subscription.handle }} — {{ subscription.state }}</li>
+    }
+  </ul>
+} @else {
+  <p>No subscriptions found.</p>
+}
