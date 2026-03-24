@@ -8,7 +8,6 @@ import { MatTableModule } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MessagesService } from '../../../../shared/messages/messages.service';
-import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -34,47 +33,19 @@ export class CustomerList implements OnInit {
     'company',
     'created'
   ];
+
  
-  async loadCustomerList(): Promise<void> {
-    try {
-      const customerList = await this.customerService.loadAllCustomers();
-      this.customerList.set(customerList);
-    } catch (err: unknown) {
-      this.messagesService.showMessage(this.getErrorMessage(err), 'success');
-      console.error(err);
-    }
+async loadCustomerList() {
+  try {
+    const customerList = await this.customerService.loadAllCustomers();
+    this.customerList.set(customerList);
+  } catch (err) {
+    console.error('loadCustomerList failed', err);
   }
+}
 
   ngOnInit(): void {
     this.loadCustomerList();
   }
-
-  private getErrorMessage(err: unknown): string {
-  if (err instanceof HttpErrorResponse) {
-    switch (err.status) {
-      case 0:
-        return 'Network error. Please check your internet connection.';
-      case 400:
-        return '400: Bad request.';
-      case 401:
-        return '401:You are not authorized.';
-      case 403:
-        return '403: Access denied.';
-      case 404:
-        return '404: Customer list not found.';
-      default:
-        if (err.status >= 500) {
-          return '500: Server error. Please try again later.';
-        }
-        return `Request failed: ${err.status}`;
-    }
-  }
-
-  if (err instanceof Error) {
-    return err.message;
-  }
-
-  return 'Unknown error';
-}
 
 }
